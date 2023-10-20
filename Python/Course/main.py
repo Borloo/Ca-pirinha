@@ -40,5 +40,16 @@ def keepUniqueValue(datas):
         isIn = False
     return finalDatas
 
-findTheNumber()
+def multiplicationTable():
+    inputNumber = int(input("Which table show ? "))
+    datas = []
+    for i in range(1, 10):
+        data = i * inputNumber
+        if (data % 3) == 0:
+            data = f'{data}*'
+        datas.append(data)
+    return datas
+
+# findTheNumber()
 # print(keepUniqueValue([1, 5, 7, 1, 5]))
+print(multiplicationTable())
