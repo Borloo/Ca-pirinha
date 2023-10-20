@@ -48,6 +48,24 @@ def multiplicationTable():
         datas.append(data)
     return datas
 
+def moyenneNotes():
+    notes = []
+    while True:
+        try:
+            inputNote = int(input("Saisissez une note positive : "))
+            if inputNote < 0 or inputNote > 20:
+                break  # Sortir de la boucle si la note n'est pas entre 0 et 20
+            notes.append(inputNote)
+        except ValueError:
+            print("Saisissez un entier valide.")
+
+    if len(notes) == 0:
+        print("Il n'y a pas de notes ...")
+    else:
+        moyenne = sum(notes) / len(notes)
+        print(f'La moyenne des {len(notes)} notes : {moyenne}')  
+
 # findTheNumber()
 # print(keepUniqueValue([1, 5, 7, 1, 5]))
-print(multiplicationTable())
+# print(multiplicationTable())
+moyenneNotes()
