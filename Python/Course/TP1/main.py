@@ -65,48 +65,42 @@ def moyenneNotes():
         moyenne = sum(notes) / len(notes)
         print(f'La moyenne des {len(notes)} notes : {moyenne}') 
 
-def caesarCipher(text: str, decallage: int):
-    dico = {
-        'a': 1,
-        'b': 2,
-        'c': 3,
-        'd': 4,
-        'e': 5,
-        'f': 6,
-        'g': 7,
-        'h': 8,
-        'i': 9,
-        'j': 10,
-        'k': 11,
-        'l': 12,
-        'm': 13,
-        'n': 14,
-        'o': 15,
-        'p': 16,
-        'q': 17,
-        'r': 18,
-        's': 19,
-        't': 20,
-        'u': 21,
-        'v': 22,
-        'w': 23,
-        'x': 24,
-        'y': 25,
-        'z': 26,
-    }
-    finalText = ""
-    for char in [*text.lower()]:
-        if char in dico:
-            pos = (dico[char] + decallage) % 26
-            for key, value in dico.items():
-                if value == pos:
-                    finalText += key
+def caesarCipher(text: str, offset: int = 1) -> str :
+    result = ''
+    for char in text:
+        if 'a' <= char <= 'z':
+            index = (ord(char) - ord('a') + offset) % 26
+            result += chr(index + ord('a'))
+            continue
+        elif 'A' <= char <= 'Z':
+            index = (ord(char) - ord('a') + offset) % 26
+            result += chr(index + ord('A'))
         else:
-            finalText += char
-    return finalText
+            result += char
+    return result
 
-findTheNumber()
-print(keepUniqueValue([1, 5, 7, 1, 5]))
-print(multiplicationTable())
-moyenneNotes()
-print(caesarCipher("gros caca dans mon cul !?", 3))
+def ceaserDecipher(text: str) -> list[list[int, str]]:
+    result = []
+    for i in range(1, 27):
+        result.append((i, caesarCipher(text, i)))
+    return result
+
+def readFile(path: str):
+    try:
+        with open(path) as f:
+            print(type(f))
+            poem = f.read
+    except FileNotFoundError:
+        poem = None
+    return poem
+
+# findTheNumber()
+# print(keepUniqueValue([1, 5, 7, 1, 5]))
+# print(multiplicationTable())
+# moyenneNotes()
+# text = "gros caca dans mon cul !?"
+# print(caesarCipher(text, 26))
+# tab = ceaserDecipher(text)
+# for value in tab:
+#     print(value)
+readFile('./data/poem.txt')
