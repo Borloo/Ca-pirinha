@@ -1,0 +1,55 @@
+
+<h1>{{titre}}</h1>
+<input type="text" [(ngModel)]="titre">
+
+<p>{{ name }}</p>
+
+<div *ngIf="isDisplayed">
+    <p>COUCOU</p>
+</div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Marque</th>
+            <th>Modele</th>
+            <th>Année</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let voiture of voitures">
+            <td>{{voiture.marque}}</td>
+            <td>{{voiture.modele}}</td>
+            <td>{{voiture.annee}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+<p>Somme des boutons {{count}}</p>
+
+<button type="button" (click)="onButtonClicked(1)">+1</button>
+<button type="button" (click)="onButtonClicked(-1)">-1</button>
+<button type="button" (click)="onButtonClicked(2)">+2</button>
+
+<p>Current date : {{date | date: 'dd/MM/yyyy'}}</p>
+<p>Current date with add point bar when the last char are 0 : {{date | date: 'dd/MM/yyyy H:m:s' | zeroByPointBar }}</p>
+
+<form [formGroup]="voitureForm">
+    <label for="marque">Marque :</label>
+    <input id="marque" type="text" formControlName="marque">
+
+    <label for="modele">Modele :</label>
+    <input id="modele" type="text" formControlName="modele">
+
+    <label for="annee">Année :</label>
+    <input id="annee" type="text" formControlName="annee">
+    <!-- <div *ngIf="voitureForm.get('annee').invalid" class="alert alert-danger">
+
+        <div *ngIf="voitureForm.get('annee').errors?.['minlength']">L'année doit contenir au moins deux caractères.</div>
+
+    </div> -->
+    
+</form>
