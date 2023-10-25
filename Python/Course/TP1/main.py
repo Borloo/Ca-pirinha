@@ -1,7 +1,9 @@
-first_name = "Clément"
-last_name = 'Pages'
+import random
 
-print(f'{first_name} {last_name}')
+def convertSpeedKmToM():
+    inputSpeed = float(input("Enter a speed in km/h : "))
+    calculatedSpeed = inputSpeed / 1.609
+    return f'{inputSpeed} km/h => {calculatedSpeed: .2f} m/h'
 
 def findTheNumber():
     inputLevel = int(input("Niveau 1/2/3 ? "))
