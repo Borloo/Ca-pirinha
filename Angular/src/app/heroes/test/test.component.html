@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <h1 class="text-center text-info">Formulaire Réactif</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <label for="first-name">
+          Nom
+        </label>
+        <input class="form-control" id="first-name" type="text" formControlName="firstName">
+        <div
+          *ngIf="!profileForm.get('firstName')!.valid && (profileForm.get('firstName')!.dirty|| profileForm.get('firstName')!.touched)"
+          class="alert alert-danger mt-2">
+          <div *ngIf="profileForm.get('firstName')!.errors?.['required']">
+            T'a bien un Nom.
+          </div>
+          <div *ngIf="profileForm.get('firstName')!.errors?.['forbiddenName']">
+            Bob c'est interdit fdp dans le nom.
+          </div>
+          <div *ngIf="profileForm.get('firstName')!.errors?.['minlength']">
+            Ca doit faire au moins 4 caractères ton nom.
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="lastName">
+          Prénom
+        </label>
+        <input class="form-control" id="lastName" type="text" formControlName="lastName">
+        <div
+          *ngIf="!profileForm.get('lastName')!.valid && (profileForm.get('lastName')!.dirty|| profileForm.get('lastName')!.touched)"
+          class="alert alert-danger mt-2">
+          <div *ngIf="profileForm.get('lastName')!.errors?.['required']">
+           T'a bien un prénom.
+          </div>
+          <div *ngIf="profileForm.get('lastName')!.errors?.['forbiddenName']">
+            Bob c'est interdit fdp.
+          </div>
+          <div *ngIf="profileForm.get('lastName')!.errors?.['minlength']">
+            Ca doit faire au moins 4 caractères.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3" formGroupName="address">
+      <h2>
+        Adresse
+      </h2>
+      <div class="row">
+        <div class="col-4">
+          <label for="street">
+            Rue
+          </label>
+          <input class="form-control" id="street" type="text" formControlName="street">
+        </div>
+        <div class="col-4">
+          <label for="city">
+            Ville
+          </label>
+          <input class="form-control" id="city" type="text" formControlName="city">
+        </div>
+        <div class="col-4">
+          <label for="zip">
+            Code Postal
+          </label>
+          <input class="form-control" id="zip" type="text" formControlName="zip">
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="btn btn-primary mt-3" value="Valider">
+  </form>
+</div>

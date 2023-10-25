@@ -1,0 +1,75 @@
+<h1 class="text-center fst-italic">
+  {{ title }}
+</h1>
+
+<!-- <p class="my-3" *ngIf="isDisplayed; else failed">
+    DISPLAY
+</p>
+<ng-template #failed>
+    FAILED
+</ng-template> -->
+
+<p> {{ currentDate | date: 'dd MMMM yyyy HH:mm:ss' | datePipe }}</p>
+<table class="table table-striped">
+  <thead>
+  <th>Id</th>
+  <th>Nom</th>
+  <th>Score</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hero of heroArray">
+    <td>{{ hero.id }}</td>
+    <td>{{ hero.name }}</td>
+    <td>{{ hero.score }}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<p>
+  Somme de mes boutons :
+  <span class="badge text-bg-warning">
+        {{ count}}
+    </span>
+</p>
+<div class="mb-3">
+  <button class="btn btn-primary me-3" type="button" (click)="onButtonClicked($event, 1)">
+    +1
+  </button>
+  <button class="btn btn-danger me-3" type="button" (click)="onButtonClicked($event, -1)">
+    -1
+  </button>
+  <button class="btn btn-success" type="button" (click)="onButtonClicked($event, 2)">
+    +2
+  </button>
+</div>
+
+<div *ngIf="!currentHero" appHighlight>
+  Chargement...
+</div>
+
+<table *ngIf="currentHero" class="table table-striped">
+  <thead>
+  <tr>
+    <th>
+      Nom
+    </th>
+    <th>
+      Score
+    </th>
+  </tr>
+  </thead>
+  <tr>
+    <td [ngClass]="isSpecial ? 'text-danger' : 'text-info' ">
+      {{currentHero.name}}
+    </td>
+    <td>
+      {{currentHero.score}}
+    </td>
+  </tr>
+
+  <button type="button" class="btn btn-secondary" (click)="rotateHeroClicked()">
+    Défiler la liste des héros
+  </button>
+</table>
+
